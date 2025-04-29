@@ -1,0 +1,11 @@
+# Archivo de configuración para Render.com
+# Define un servicio web usando Docker
+services:
+  - type: web
+    name: telegram-whatsapp-bot
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free  # o starter según disponibilidad
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /health
