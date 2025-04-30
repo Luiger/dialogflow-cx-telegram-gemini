@@ -5,16 +5,10 @@ options:
 steps:
   # 1) construye la imagen con tu Dockerfile
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini'
-      - '.'
+    args: ['build','-t','us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini','.']
   # 2) sube la imagen al repositorio
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini'
+    args: ['push','us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini']
 
 # Indica a Cloud Build que ésta es la imagen resultante
 images:
