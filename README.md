@@ -1,7 +1,7 @@
 ![GitHub User's stars](https://img.shields.io/github/stars/RajKKapadia?style=for-the-badge)
 ![GitHub followers](https://img.shields.io/github/followers/RajKKapadia?style=for-the-badge)
 
-# GCP Cloud Function NodeJs
+# GCP Cloud Function NodeJs xd
 
 * run the function locally install all the packages
 ```bash
