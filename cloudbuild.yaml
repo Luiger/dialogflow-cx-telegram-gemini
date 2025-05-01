@@ -1,15 +1,49 @@
 # cloudbuild.yaml
-options:
-  logging: CLOUD_LOGGING_ONLY
 
 steps:
-  # 1) construye la imagen con tu Dockerfile
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build','-t','us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini','.']
-  # 2) sube la imagen al repositorio
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push','us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini']
+# 1) Construye la imagen de contenedor usando tu Dockerfile
+#    - Se etiqueta con el PROJECT_ID y el COMMIT_SHA para unicidad
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA'
+    - '.'  # Directorio donde está tu Dockerfile
 
-# Indica a Cloud Build que ésta es la imagen resultante
+# 2) Sube la imagen construida a Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA']
+
+# 3) Despliega la imagen en Cloud Run
+#    - Usa variables de sustitución (_SERVICE_NAME, _REGION) que debes configurar en el Activador
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    - 'run'
+    - 'deploy'
+    - '${_SERVICE_NAME}'   # Nombre EXACTO de tu servicio en Cloud Run
+    - '--image=us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA' # La imagen que acabamos de subir
+    - '--region=${_REGION}'      # La región donde está tu servicio Cloud Run
+    - '--platform=managed'     # Plataforma estándar de Cloud Run
+    - '--quiet'                # Evita prompts interactivos
+
+# Indica a Cloud Build cuál es la imagen final producida.
+# Útil para integraciones como Vulnerability Scanning.
 images:
-  - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini'
+  - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA'
+
+# Opciones de compilación
+options:
+  logging: CLOUD_LOGGING_ONLY # ¡Soluciona el error original! Los logs van a Cloud Logging.
+
+# Opcional pero RECOMENDADO: Define variables de sustitución.
+# Estas variables (_SERVICE_NAME, _REGION) DEBEN tener un valor.
+# Puedes definirlas aquí como predeterminadas, pero lo MÁS IMPORTANTE
+# es asegurarte de que estén definidas en la configuración de tu
+# ACTIVADOR de Cloud Build en la sección "Variables de sustitución".
+substitutions:
+  _SERVICE_NAME: 'tu-nombre-de-servicio-cloud-run' # <-- ¡REEMPLAZA ESTO en el Activador!
+  _REGION: 'tu-region-cloud-run'              # <-- ¡REEMPLAZA ESTO en el Activador!
+
+# NOTA: $PROJECT_ID y $COMMIT_SHA son variables proporcionadas automáticamente por Cloud Build.
+#       No necesitas definirlas en 'substitutions' a menos que quieras sobreescribirlas.
