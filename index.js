@@ -21,7 +21,13 @@ webApp.use('/dialogflow', dialogflowRoute.router);
 
 exports.telegramWebhook = webApp;
 
-const PORT = process.env.PORT || 8080;
+// index.js (fragmento)
+webApp.get('/healthz', (req, res) => {
+    return res.status(200).send('OK');
+  });
+  
+
+const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 webApp.listen(PORT, HOST, () => {
