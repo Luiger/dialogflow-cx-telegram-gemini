@@ -22,7 +22,8 @@ webApp.use('/dialogflow', dialogflowRoute.router);
 exports.telegramWebhook = webApp;
 
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 
-webApp.listen(PORT, () => {
-    console.log(`Server is up and running at ${PORT}`);
-});
+webApp.listen(PORT, HOST, () => {
+    console.log(`Servidor escuchando en http://${HOST}:${PORT}`);
+  });
