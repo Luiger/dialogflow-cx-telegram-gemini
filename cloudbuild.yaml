@@ -16,7 +16,7 @@ steps:
 
 # 3) Despliega la imagen en Cloud Run
 #    - Usa variables de sustitución (_SERVICE_NAME, _REGION) que debes configurar en el Activador
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: gcloud
   args:
     - 'run'
