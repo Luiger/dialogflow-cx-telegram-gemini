@@ -21,9 +21,9 @@ steps:
   args:
     - 'run'
     - 'deploy'
-    - '${_SERVICE_NAME}'   # Nombre EXACTO de tu servicio en Cloud Run
+    - 'dialogflowprueba2'   # Nombre EXACTO de tu servicio en Cloud Run
     - '--image=us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA' # La imagen que acabamos de subir
-    - '--region=${_REGION}'      # La región donde está tu servicio Cloud Run
+    - '--region=us-central1'      # La región donde está tu servicio Cloud Run
     - '--platform=managed'     # Plataforma estándar de Cloud Run
     - '--quiet'                # Evita prompts interactivos
 
@@ -41,9 +41,9 @@ options:
 # Puedes definirlas aquí como predeterminadas, pero lo MÁS IMPORTANTE
 # es asegurarte de que estén definidas en la configuración de tu
 # ACTIVADOR de Cloud Build en la sección "Variables de sustitución".
-substitutions:
-  _SERVICE_NAME: 'tu-nombre-de-servicio-cloud-run' # <-- ¡REEMPLAZA ESTO en el Activador!
-  _REGION: 'tu-region-cloud-run'              # <-- ¡REEMPLAZA ESTO en el Activador!
+#substitutions:
+ # _SERVICE_NAME: 'tu-nombre-de-servicio-cloud-run' # <-- ¡REEMPLAZA ESTO en el Activador!
+  #_REGION: 'tu-region-cloud-run'              # <-- ¡REEMPLAZA ESTO en el Activador!
 
 # NOTA: $PROJECT_ID y $COMMIT_SHA son variables proporcionadas automáticamente por Cloud Build.
 #       No necesitas definirlas en 'substitutions' a menos que quieras sobreescribirlas.
