@@ -11,6 +11,11 @@ webApp.use((req, res, next) => {
     next();
 });
 
+// index.js (fragmento)
+webApp.get('/healthz', (req, res) => {
+    return res.status(200).send('OK');
+  });
+
 const homeRoute = require('./homeRoute');
 const telegramRoute = require('./telegramRoute');
 const dialogflowRoute = require('./dialogflowRoute');
@@ -20,11 +25,6 @@ webApp.use('/telegram', telegramRoute.router);
 webApp.use('/dialogflow', dialogflowRoute.router);
 
 exports.telegramWebhook = webApp;
-
-// index.js (fragmento)
-webApp.get('/healthz', (req, res) => {
-    return res.status(200).send('OK');
-  });
   
 
 const PORT = process.env.PORT || 8080;
