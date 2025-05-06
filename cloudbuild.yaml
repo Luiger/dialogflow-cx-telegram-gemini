@@ -7,12 +7,12 @@ steps:
   args:
     - 'build'
     - '-t'
-    - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA'
+    - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-cx-telegram-gemini:$COMMIT_SHA'
     - '.'  # Directorio donde está tu Dockerfile
 
 # 2) Sube la imagen construida a Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA']
+  args: ['push', 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-cx-telegram-gemini:$COMMIT_SHA']
 
 # 3) Despliega la imagen en Cloud Run
 #    - Usa variables de sustitución (_SERVICE_NAME, _REGION) que debes configurar en el Activador
@@ -21,8 +21,8 @@ steps:
   args:
     - 'run'
     - 'deploy'
-    - 'dialogflow-telegram-gemini'   # Nombre EXACTO de tu servicio en Cloud Run
-    - '--image=us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA' # La imagen que acabamos de subir
+    - 'dialogflow-cx-telegram-gemini'   # Nombre EXACTO de tu servicio en Cloud Run
+    - '--image=us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-cx-telegram-gemini:$COMMIT_SHA' # La imagen que acabamos de subir
     - '--region=us-central1'      # La región donde está tu servicio Cloud Run
     - '--platform=managed'     # Plataforma estándar de Cloud Run
     - '--quiet'                # Evita prompts interactivos
@@ -30,7 +30,7 @@ steps:
 # Indica a Cloud Build cuál es la imagen final producida.
 # Útil para integraciones como Vulnerability Scanning.
 images:
-  - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA'
+  - 'us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-cx-telegram-gemini:$COMMIT_SHA'
 
 # Opciones de compilación
 options:
