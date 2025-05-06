@@ -21,7 +21,9 @@ const {
  * apiEndpoint: 'us-central1-dialogflow.googleapis.com'
  */
 
-const credentials = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_JSON_FILE_PATH));
+const keyFilePath = process.env.SERVICE_ACCOUNT_JSON_PATH || '/secrets/service-account.json';
+const credentials = JSON.parse(fs.readFileSync(keyFilePath, 'utf8'));
+/**const credentials = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_JSON_FILE_PATH));*/
 const projectId = credentials.project_id;
 const location = DIALOGFLOW_CX_AGENT_LOCATION;
 const agentId = DIALOGFLOW_CX_AGENT_ID;
