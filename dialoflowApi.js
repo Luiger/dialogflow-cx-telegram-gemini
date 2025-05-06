@@ -21,7 +21,7 @@ const {
  * apiEndpoint: 'us-central1-dialogflow.googleapis.com'
  */
 
-const { SessionsClient } = require('@google-cloud/dialogflow-cx');
+
 // No necesitas cargar fs ni service-account.json
 const client = new SessionsClient();  // Autodetecta credenciales
 
