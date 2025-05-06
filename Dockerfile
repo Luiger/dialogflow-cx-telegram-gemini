@@ -24,7 +24,7 @@
     COPY --from=build /app .
     
     # Expone el puerto en el que Express escucha (3000)
-    EXPOSE 8080
+    EXPOSE 3000
     
     # Arranca la aplicación (index.js inicializa Telegram y Express)
     CMD ["node", "index.js"]

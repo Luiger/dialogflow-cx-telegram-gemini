@@ -21,7 +21,7 @@ steps:
   args:
     - 'run'
     - 'deploy'
-    - 'dialogflowprueba2'   # Nombre EXACTO de tu servicio en Cloud Run
+    - 'dialogflow-telegram-gemini'   # Nombre EXACTO de tu servicio en Cloud Run
     - '--image=us-docker.pkg.dev/$PROJECT_ID/chatbot-images/dialogflow-telegram-gemini:$COMMIT_SHA' # La imagen que acabamos de subir
     - '--region=us-central1'      # La región donde está tu servicio Cloud Run
     - '--platform=managed'     # Plataforma estándar de Cloud Run
