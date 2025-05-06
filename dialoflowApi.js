@@ -22,19 +22,16 @@ const {
  */
 
 
-// No necesitas cargar fs ni service-account.json
-const client = new SessionsClient();  // Autodetecta credenciales
-
-/**
+/** 
 const keyFilePath = process.env.SERVICE_ACCOUNT_JSON_PATH || '/secrets/service-account.json';
 const credentials = JSON.parse(fs.readFileSync(keyFilePath, 'utf8'));
 */
-/**const credentials = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_JSON_FILE_PATH));*/
+const credentials = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_JSON_FILE_PATH));
 const projectId = credentials.project_id;
 const location = DIALOGFLOW_CX_AGENT_LOCATION;
 const agentId = DIALOGFLOW_CX_AGENT_ID;
 const languageCode = 'es';
-/** 
+
 const client = new SessionsClient({
     credentials: {
         client_id: credentials.client_id,
@@ -44,7 +41,6 @@ const client = new SessionsClient({
     },
     apiEndpoint: `${location}-dialogflow.googleapis.com`
 });
-*/
 
 const detectIntentText = async (query, sessionId) => {
     try {

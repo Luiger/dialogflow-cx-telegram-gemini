@@ -6,6 +6,7 @@ const DIALOGFLOW_CX_AGENT_LOCATION = process.env.DIALOGFLOW_CX_AGENT_LOCATION;
 const ERROR_MESSAGE = process.env.ERROR_MESSAGE;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const TELEGRAM_API_KEY = process.env.TELEGRAM_API_KEY;
+const PORT = process.env.PORT;
 
 module.exports = {
     SERVICE_ACCOUNT_JSON_FILE_PATH,
@@ -13,5 +14,6 @@ module.exports = {
     DIALOGFLOW_CX_AGENT_LOCATION,
     ERROR_MESSAGE,
     GEMINI_API_KEY,
-    TELEGRAM_API_KEY
+    TELEGRAM_API_KEY,
+    PORT
 };
