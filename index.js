@@ -11,11 +11,6 @@ webApp.use((req, res, next) => {
     next();
 });
 
-// index.js (fragmento)
-webApp.get('/healthz', (req, res) => {
-    return res.status(200).send('OK');
-  });
-
 const homeRoute = require('./homeRoute');
 const telegramRoute = require('./telegramRoute');
 const dialogflowRoute = require('./dialogflowRoute');
@@ -25,11 +20,9 @@ webApp.use('/telegram', telegramRoute.router);
 webApp.use('/dialogflow', dialogflowRoute.router);
 
 exports.telegramWebhook = webApp;
-  
 
-const PORT = process.env.PORT || 8080;
-const HOST = '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 
-webApp.listen(PORT, HOST, () => {
-    console.log(`Servidor escuchando en http://${HOST}:${PORT}`);
-  });
+webApp.listen(PORT, () => {
+    console.log(`Server is up and running at ${PORT}`);
+  })
