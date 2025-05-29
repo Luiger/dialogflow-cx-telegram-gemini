@@ -7,6 +7,7 @@ const ERROR_MESSAGE = process.env.ERROR_MESSAGE;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const TELEGRAM_API_KEY = process.env.TELEGRAM_API_KEY;
 const PORT = process.env.PORT;
+const GOOGLE_CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
 
 module.exports = {
     SERVICE_ACCOUNT_JSON_FILE_PATH,
@@ -15,5 +16,6 @@ module.exports = {
     ERROR_MESSAGE,
     GEMINI_API_KEY,
     TELEGRAM_API_KEY,
-    PORT
+    PORT,
+    GOOGLE_CLIENT_EMAIL
 };
