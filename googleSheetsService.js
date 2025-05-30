@@ -28,7 +28,7 @@ const auth = new google.auth.GoogleAuth({
     scopes: SCOPES,
 });
 
-const SPREADSHEET_ID = '1etWrkZvDEkVt3Uj8iXXLN7TH4NCawNQDSuc0pDQCIsU'; // Obtén esto de la URL de tu Hoja de Cálculo
+const { SPREADSHEET_ID } = require('./constant');
 
 async function appendToSheet(sheetName, rowData) {
     try {
