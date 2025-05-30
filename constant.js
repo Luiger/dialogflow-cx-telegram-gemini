@@ -8,6 +8,7 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const TELEGRAM_API_KEY = process.env.TELEGRAM_API_KEY;
 const PORT = process.env.PORT;
 const GOOGLE_CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
 module.exports = {
     SERVICE_ACCOUNT_JSON_FILE_PATH,
@@ -17,5 +18,6 @@ module.exports = {
     GEMINI_API_KEY,
     TELEGRAM_API_KEY,
     PORT,
-    GOOGLE_CLIENT_EMAIL
+    GOOGLE_CLIENT_EMAIL,
+    SPREADSHEET_ID
 };
